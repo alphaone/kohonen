@@ -10,7 +10,8 @@
                  [org.clojure/clojurescript "1.8.51"]
                  [org.clojure/core.async "0.2.374"
                   :exclusions [org.clojure/tools.reader]]
-                 [reagent "0.5.1"]]
+                 [reagent "0.5.1"]
+                 [re-frame "0.7.0"]]
   
   :plugins [[lein-figwheel "0.5.4-3"]
             [lein-doo "0.1.6"]
