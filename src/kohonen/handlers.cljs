@@ -1,6 +1,7 @@
 (ns kohonen.handlers
   (:require [kohonen.db :as db]
-            [re-frame.core :refer [register-handler path trim-v after debug]]))
+            [re-frame.core :refer [register-handler path trim-v after debug]]
+            [kohonen.kohonen :as k]))
 
 (register-handler
   :initialize-db
@@ -37,3 +38,15 @@
   [(path :nearest) trim-v]
   (fn [_ [new-nearest]]
     new-nearest))
+
+(register-handler
+  :more-neurons
+  [(path :neurons)]
+  (fn [old-neurons]
+    (conj old-neurons (k/random-point))))
+
+(register-handler
+  :less-neurons
+  [(path :neurons)]
+  (fn [old-neurons]
+    (rest old-neurons)))

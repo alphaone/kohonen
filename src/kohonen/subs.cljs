@@ -18,6 +18,11 @@
     (r/reaction (:neurons @db))))
 
 (rf/register-sub
+  :neuron-count
+  (fn [db _]
+    (r/reaction (count (:neurons @db)))))
+
+(rf/register-sub
   :stimulus
   (fn [db _]
     (r/reaction (:stimulus @db))))

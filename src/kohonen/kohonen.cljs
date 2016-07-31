@@ -1,5 +1,9 @@
 (ns kohonen.kohonen)
 
+(defn random-point []
+  {:x (rand-int 800)
+   :y (rand-int 400)})
+
 (defn delta [a b]
   {:dx (- (:x b) (:x a))
    :dy (- (:y b) (:y a))})

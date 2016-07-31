@@ -3,7 +3,7 @@
 ;; -- Default app-db Value  ---------------------------------------------------
 
 (def default-value
-  {:timeout  500
+  {:timeout  50
    :t        1
    :neurons  [{:x 0 :y 0} {:x 0 :y 0}]
    :stimulus {:x 0 :y 0}

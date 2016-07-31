@@ -11,10 +11,6 @@
 
 (defonce current-timeout (atom nil))
 
-(defn random-point []
-  {:x (rand-int 800)
-   :y (rand-int 400)})
-
 (defn random-stimulus []
   (case (rand-int 4)
     0 {:x (rand-int 800)
@@ -28,7 +24,7 @@
   )
 
 (defonce starting-neurons
-         (repeatedly 30 random-point))
+         (repeatedly 20 k/random-point))
 
 (defn learning-rate-fn [t]
   (/ 1 (Math/pow t 0.2)))
@@ -52,6 +48,9 @@
   (rf/dispatch-sync [:set-neurons starting-neurons])
   (train))
 
+(defn stop-fn []
+  (js/clearTimeout @current-timeout))
+
 (defn by-id [id]
   (.getElementById js/document id))
 
@@ -65,4 +64,4 @@
 (defn ^:export run
   []
   (dispatch-sync [:initialize-db])
-  (r/render [ui/main start-fn learning-rate-fn] (by-id "app")))
+  (r/render [ui/main start-fn stop-fn learning-rate-fn] (by-id "app")))
